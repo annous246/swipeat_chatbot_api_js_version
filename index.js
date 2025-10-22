@@ -4,11 +4,11 @@ const { getResponse, getSimilar } = require("./ai_chatbot/ai_chatbot.js");
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8080;
-async function f() {
-  res = await getResponse("fuck you");
-  console.log(res);
-}
-f();
+// async function f() {
+//   res = await getResponse("fuck you");
+//   console.log(res);
+// }
+// f();
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -21,7 +21,7 @@ app.post("/ask", async (req, res) => {
     if (!query) {
       return res.status(400).json({ error: "Missing query in JSON body" });
     }
-    //const response = await getResponse(query);
+    const response = await getResponse(query);
     res.json({ response });
   } catch (error) {
     res.status(500).json({ error: error.message });
